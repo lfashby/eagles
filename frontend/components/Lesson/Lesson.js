@@ -37,16 +37,16 @@ class Lesson extends React.Component {
   // }
 
   componentDidMount() {
-    return fetch('/lesson' + this.props.match.params.id, { method: 'GET' }) 
+    return fetch('/lesson/' + this.props.match.params.id, { method: 'GET' }) 
       .then((response) => {
-        console.log(response.json());
-        // response.json())
+        response.json()
       })
-      // .then((lessonDataJSON) => {
+      .then((lessonDataJSON) => {
+        console.log(lessonDataJSON);
       //   this.setState({
       //     slides: lessonDataJSON.slides
       //   });
-      // })
+      })
   }
 
 

@@ -71,17 +71,19 @@ router.get('/users', function(req, res) {
 router.get('/lesson/:lessonId', function(req, res) {
   Lesson.find({_id: req.params.lessonId})
   .then(function(lesson) {
-    lesson[0].slidesArr = [];
     return lesson[0];
   })
   .then((specificLesson) => {
-    specificLesson.slides.forEach((slideID) => {
+    return specificLesson.slides.map((slideID) => { // ridiculous
       Slide.find({_id: slideID})
         .then((found) => {
-          lesson[0].slidesArr.push(found[0]);
-          console.log('*************', lesson[0].slidesArr);
+          return specificLesson.slidesArr.push(found[0]); // return needed?
         })
     })
+  })
+  .then((les) => {
+    console.log('8*8****************', les)
+    res.send(les)
   })
   .catch(function(err) {
     res.send(err);

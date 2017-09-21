@@ -31,7 +31,7 @@ class RouterWrapper extends Component {
   }
 
   getLessons() {
-    return fetch('/lessons')
+    fetch('/lessons')
     .then((res) => res.json())
     .then((lessons) => this.setState({lessons}))
     .catch((err) => console.log('Error getting lessons', err));

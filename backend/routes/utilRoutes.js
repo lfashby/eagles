@@ -5,6 +5,7 @@ const dotenv = require('dotenv').config({path: '../.env'})
 
 router.get('/query', function(req, res) {
   // console.log('sending request with query string')
+  console.log(process.env.KEY)
   axios({
     method: 'get', 
     url: 'https://www.googleapis.com/youtube/v3/videos',

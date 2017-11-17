@@ -3,6 +3,7 @@ Run server to persist data
 routers in separate files
 */
 const express = require('express');
+const env = require('dotenv').config();
 const database = require('./db/database.js');
 const path = require('path');
 const morgan = require('morgan');
@@ -35,16 +36,17 @@ app.use(session({
 }))
 
 // public file with static routes
-app.use(express.static('../frontend/public'));
+// app.use(express.static('../frontend/public'));
+app.use(express.static(path.join(__dirname, '../frontend/public')));
 
 // -------------------AUTH------------------------- //
 app.get('/logout', checkAuth.logout);
 app.post('/users', checkAuth.createAccount);
 app.post('/login', checkAuth.attemptLoggin);
 app.use(checkAuth.checkUser);
-// ------------------------------------------------ //
+// // ------------------------------------------------ //
 
-// handle protected routes
+// // handle protected routes
 app.all('/slides', slideRoutes);
 app.all('/slides/*', slideRoutes);
 app.all('/users', userRoutes);
@@ -62,3 +64,4 @@ app.use((req, res) => {
 
 // server listens for requests
 app.listen(process.env.PORT || 3000);
+console.log('SERVER IS UP');

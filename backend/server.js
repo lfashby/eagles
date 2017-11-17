@@ -63,5 +63,9 @@ app.use((req, res) => {
 });
 
 // server listens for requests
-app.listen(process.env.PORT || 3000);
-console.log('SERVER IS UP');
+
+var port = process.env.PORT || 3000;
+
+app.listen(port, function () {
+  console.log("App is running on port " + port);
+});

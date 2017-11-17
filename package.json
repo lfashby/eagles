@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Greenfield Project",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack && node ./backend/server.js",
+    // "start": "node backend/server.js",
     "compile": "webpack --watch"
   },
   "repository": {
